@@ -1,6 +1,6 @@
-# trans-files
+# laravel-google-translate-files
 
-trans-files, is a laravel package that enable you to translate all of your resources/lang (files) via google translations.
+laravel-google-translate-files, is a laravel package that enable you to translate all of your resources/lang (files) via google translations.
 
 > this may help you if you work on non-native-content and you don't want
 > to visit google translate every time you want to translate a word.
@@ -11,7 +11,7 @@ trans-files, is a laravel package that enable you to translate all of your resou
  - stichoza/google-translate-php
 # Installing
 ```
-composer require admica/trans-files
+composer require admica/laravel-google-translate-files
 ```
 
 # usage
