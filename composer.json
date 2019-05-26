@@ -1,6 +1,25 @@
 {
     "name": "admica/trans-files",
     "description": "You can translate your resources/lang files and folders with command lines using google translate, this may save lots of your time if you are working on multilanguage website.",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "translate",
+        "google translate",
+        "translate",
+        "lang",
+        "files",
+        "translate",
+        "lang",
+        "folders",
+        "resources/lang",
+        "translate",
+        "from",
+        "language",
+        "to",
+        "other",
+        "laravel"
+    ],
     "type": "library",
     "require": {
         "php": ">7.0.1",
