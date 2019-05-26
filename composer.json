@@ -43,7 +43,7 @@
     },
     "autoload": {
         "psr-0": {
-            "admica\\transFiles\\": "src/"
+            "admica\\transFiles": "src/"
         }
     },
     "minimum-stability": "dev"
