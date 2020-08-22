@@ -13,7 +13,7 @@ class TranslateFilesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'files:translate {main-language} {other-language}';
+    protected $signature = 'files:translate {main-language} {other-language} {--mainPath} {--absolutePath}';
 
     /**
      * The console command description.
@@ -39,20 +39,29 @@ class TranslateFilesCommand extends Command
      */
     public function handle()
     {
-        $mainDirectory = resource_path('lang');
+        $mainDirectory =  resource_path('lang');
+        if ($this->option('mainPath')) {
+
+            $mainDirectory = resource_path($this->option('mainPath'));
+            if ($this->option('absolutePath')) {
+                $mainDirectory = $this->option('mainPath');
+            }
+        }
+
+
         $mainLanguage = $this->argument('main-language');
         $secondLanugage = $this->argument('other-language');
         //go through every folder and file
-        
+
         $this->checkDirectory($mainDirectory, $mainLanguage, $secondLanugage);
         $this->info('translation done successfully :) !');
     }
     public function getFilesList($path, $mainLanguage, $secondLanugage = null, $directoryPath = '')
     {
         $FilesList = [];
-        
+
         $languages =  [$mainLanguage];
-        if ($secondLanugage!=null) {
+        if ($secondLanugage != null) {
             array_push($languages, $secondLanugage);
         }
         foreach ($languages as $language) {
@@ -71,7 +80,7 @@ class TranslateFilesCommand extends Command
                         $mainLanguage,
                         $secondLanugage,
                         $fileName
-                ));
+                    ));
                 }
             }
         }
@@ -80,18 +89,18 @@ class TranslateFilesCommand extends Command
     public function checkDirectory($path, $mainLanguage, $secondLanugage)
     {
         $filesList = $this->getFilesList($path, $mainLanguage);
-        foreach ($filesList as $fileName=>$existance) {
+        foreach ($filesList as $fileName => $existance) {
             if (!in_array($mainLanguage, $existance)) {
-                $fileMainPath = $path.'/'.$secondLanugage.$fileName;
-                $filePath = $path.'/'.$mainLanguage.$fileName;
-                if (!file_exists($path.'/'.$secondLanugage.$fileName)) {
+                $fileMainPath = $path . '/' . $secondLanugage . $fileName;
+                $filePath = $path . '/' . $mainLanguage . $fileName;
+                if (!file_exists($path . '/' . $secondLanugage . $fileName)) {
                     $this->copyFiles($fileMainPath, $filePath);
                 }
                 $this->transFile($fileMainPath, $filePath, $mainLanguage, $secondLanugage);
             } else {
-                $fileMainPath = $path.'/'.$mainLanguage.$fileName;
-                $filePath = $path.'/'.$secondLanugage.$fileName;
-                if (!file_exists($path.'/'.$secondLanugage.$fileName)) {
+                $fileMainPath = $path . '/' . $mainLanguage . $fileName;
+                $filePath = $path . '/' . $secondLanugage . $fileName;
+                if (!file_exists($path . '/' . $secondLanugage . $fileName)) {
                     $this->copyFiles($fileMainPath, $filePath);
                 }
                 $this->transFile($fileMainPath, $filePath, $mainLanguage, $secondLanugage);
@@ -102,42 +111,42 @@ class TranslateFilesCommand extends Command
     {
         $tr = new GoogleTranslate($base_locale, $locale, [
             'timeout' => 10,
-            
+
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'
             ]
         ]);
 
         $translation =  $tr->translate($text);
-        
-        $this->line($text.' => '.$translation);
+
+        $this->line($text . ' => ' . $translation);
         sleep(2);
         return $translation;
     }
 
     public function transFile($mainPath, $translatedPath, $mainLanguage, $secondLanugage)
     {
-        $this->info('checking '.$translatedPath.' ....');
+        $this->info('checking ' . $translatedPath . ' ....');
         if (!is_dir($mainPath)) {
             $mainWords = require $mainPath;
-            
+
             $otherWords = require $translatedPath;
             $otherWords = $this->translateArray($mainWords, $otherWords, $mainLanguage, $secondLanugage);
-            
+
             $this->UpdateFile($translatedPath, $otherWords);
-            $this->info('File : '.$translatedPath.'. Had been translated succesfully');
+            $this->info('File : ' . $translatedPath . '. Had been translated succesfully');
         }
     }
     public function UpdateFile($fullPath, $content)
     {
-        $content = '<?php return '.var_export($content, true).';';
-       
+        $content = '<?php return ' . var_export($content, true) . ';';
+
         File::put($fullPath, $content);
     }
     public function translateArray($mainWords, $otherWords, $mainLanguage, $otherLanguage)
     {
-        foreach ($mainWords as $key=>$word) {
-            if (!array_key_exists($key, $otherWords)||gettype($mainWords[$key])!=gettype($otherWords[$key])) {
+        foreach ($mainWords as $key => $word) {
+            if (!array_key_exists($key, $otherWords) || gettype($mainWords[$key]) != gettype($otherWords[$key])) {
                 $otherWords[$key] = $mainWords[$key];
             }
             if (is_array($mainWords[$key])) {
@@ -160,7 +169,7 @@ class TranslateFilesCommand extends Command
     }
     public function getFiles($langPath)
     {
-        $files   = glob($langPath.'/*');
+        $files   = glob($langPath . '/*');
         return $files;
     }
 }
