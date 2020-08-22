@@ -13,7 +13,7 @@ class TranslateFilesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'files:translate {main-language} {other-language} {--mainPath=} {--absolutePath}';
+    protected $signature = 'files:translate {main-language} {other-language} {--mainPath=} {--absolutePath=}';
 
     /**
      * The console command description.

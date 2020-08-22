@@ -6,25 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9
 {
-    public static $prefixLengthsPsr4 = array (
+    public static $prefixesPsr0 = array (
         'a' => 
         array (
-            'admica\\trans-files\\' => 19,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'admica\\trans-files\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/packages/admica/trans-files/src',
+            'admica\\transFiles' => 
+            array (
+                0 => __DIR__ . '/../..' . '/src',
+            ),
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -6,5 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'admica\\trans-files\\' => array($baseDir . '/packages/admica/trans-files/src'),
 );
