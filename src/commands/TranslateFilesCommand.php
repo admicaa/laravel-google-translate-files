@@ -1,6 +1,6 @@
 <?php
 
-namespace admica\transFiles\Commands;
+namespace Admica\transFiles\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;

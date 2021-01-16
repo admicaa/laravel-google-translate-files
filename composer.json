@@ -37,13 +37,13 @@
     ],
     "autoload": {
         "psr-0": {
-            "admica\\transFiles": "src/"
+            "Admica\\transFiles": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "admica\\transFiles\\transFilesServiceProvider"
+                "Admica\\transFiles\\transFilesServiceProvider"
             ]
         }
     },

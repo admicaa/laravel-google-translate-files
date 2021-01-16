@@ -1,6 +1,6 @@
 <?php
 
-namespace admica\transFiles;
+namespace Admica\transFiles;
 
 use Illuminate\Support\ServiceProvider;
 use admica\transFiles\Commands\TranslateFilesCommand;
