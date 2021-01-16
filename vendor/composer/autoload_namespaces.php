@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'admica\\transFiles' => array($baseDir . '/src'),
+    'Admica\\transFiles' => array($baseDir . '/src'),
 );

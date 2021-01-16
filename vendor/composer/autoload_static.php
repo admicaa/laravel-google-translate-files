@@ -7,19 +7,24 @@ namespace Composer\Autoload;
 class ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9
 {
     public static $prefixesPsr0 = array (
-        'a' => 
+        'A' => 
         array (
-            'admica\\transFiles' => 
+            'Admica\\transFiles' => 
             array (
                 0 => __DIR__ . '/../..' . '/src',
             ),
         ),
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixesPsr0 = ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd231e0bd8bf16408076136b7ef218dc9::$classMap;
 
         }, null, ClassLoader::class);
     }
