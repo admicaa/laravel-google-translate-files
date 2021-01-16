@@ -35,16 +35,16 @@
             "email": "a_a199799@ymail.com"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "admica\\transFiles": "src/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "admica\\transFiles\\transFilesServiceProvider"
             ]
-        }
-    },
-    "autoload": {
-        "psr-0": {
-            "admica\\transFiles": "src/"
         }
     },
     "minimum-stability": "dev"

@@ -1,4 +1,5 @@
 <?php
+
 namespace admica\transFiles;
 
 use Illuminate\Support\ServiceProvider;
